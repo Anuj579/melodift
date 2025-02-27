@@ -1,73 +1,53 @@
-// This will:
-// Take user input (mood)
-// Send it to Gemini AI
-// Fetch songs from YouTube API
-// Return results to frontend
-
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
+    const { GoogleGenerativeAI } = require("@google/generative-ai");
     try {
-        const { mood } = await req.json();
+        const { mood, language } = await req.json();
 
-        if (!mood) {
-            return NextResponse.json({ success: false, error: "Mood is required" }, { status: 400 });
+        if (!mood || !language) {
+            return NextResponse.json({ success: false, error: "Mood and Language are required" }, { status: 400 });
         }
 
         const API_KEY = process.env.GEMINI_API_KEY;
         const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-        // 🔍 Step 1: Get AI-Generated Song Names
-        const geminiResponse = await fetch(GEMINI_API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                contents: [{ parts: [{ text: `Suggest 10 song ideas for someone feeling ${mood}. Only songs, nothing else. Mix english and hindi songs both.` }] }],
-            }),
-        });
+        // Step 1: Get AI-Generated Song Names
+        const geminiPrompt = `Suggest 10 popular ${language} songs for someone feeling ${mood}. Return ONLY song names in a numbered list format. Include a mix of trending and classic songs.`;
+        const geminiResult = await model.generateContent(geminiPrompt);
 
-        const geminiData = await geminiResponse.json();
-        // console.log("✅ Gemini API Response:", JSON.stringify(geminiData, null, 2));
-
-        // 🔍 Step 2: Check if Gemini API returned valid data
-        if (!geminiData?.candidates || geminiData.candidates.length === 0) {
-            return NextResponse.json({ error: "Failed to generate playlist from Gemini API" }, { status: 500 });
+        if (!geminiResult?.response?.candidates || geminiResult?.response.candidates.length === 0) {
+            return NextResponse.json({ success: false, error: "Gemini API failed to generate songs" }, { status: 500 });
         }
 
-        // 🔹 Extract song suggestions from Gemini API
-        const generatedText = geminiData.candidates[0]?.content?.parts?.[0]?.text || "";
-        const suggestedSongs = generatedText.split("\n").filter(Boolean);
-        console.log("🎵 Suggested Songs:", suggestedSongs);
+        const generatedText = geminiResult?.response?.text() || "";
 
+        let suggestedSongs = generatedText.split("\n").map((s) => s.replace(/^\d+\.\s*/, "").trim()).filter(Boolean);
         if (suggestedSongs.length === 0) {
-            return NextResponse.json({ error: "Gemini API did not return valid song suggestions" }, { status: 500 });
+            return NextResponse.json({ error: "No valid songs received from Gemini API" }, { status: 500 });
         }
+        console.log("Suggested songs:", suggestedSongs);
 
-        // 🔍 Step 3: Fetch Real Songs from YouTube
-        const youtubeResults = await Promise.all(
-            suggestedSongs.map(async (songName) => {
-                const YOUTUBE_SEARCH_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(songName)}&type=video&maxResults=1&key=${YOUTUBE_API_KEY}`;
+        // Step 2: Fetch YouTube Videos (Only Music Videos)
+        const searchQuery = suggestedSongs.map((song) => `\"${song}\" official song`).join("|");
+        const YOUTUBE_SEARCH_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&videoCategoryId=10&maxResults=10&key=${YOUTUBE_API_KEY}`;
 
-                const youtubeResponse = await fetch(YOUTUBE_SEARCH_URL);
-                const youtubeData = await youtubeResponse.json();
+        const youtubeResponse = await fetch(YOUTUBE_SEARCH_URL);
+        const youtubeData = await youtubeResponse.json();
 
-                const video = youtubeData.items?.[0];
-                if (!video) return null;
+        const playlist = youtubeData.items
+            .filter((video) => suggestedSongs.some((song) => video.snippet.title.toLowerCase().includes(song.toLowerCase())))
+            .map((video) => ({
+                title: video.snippet.title,
+                videoId: video.id.videoId,
+                thumbnail: video.snippet.thumbnails.high.url,
+            }));
 
-                return {
-                    title: video.snippet.title,
-                    videoId: video.id.videoId,
-                    thumbnail: video.snippet.thumbnails.default.url,
-                };
-            })
-        );
-
-        const filteredResults = youtubeResults.filter((song) => song !== null);
-
-        return NextResponse.json({ success: true, playlist: filteredResults });
+        return NextResponse.json({ success: true, playlist });
     } catch (error) {
-        console.error("❌ Error:", error);
+        console.error("Error:", error);
         return NextResponse.json({ success: false, error: "Something went wrong" }, { status: 500 });
     }
 }
