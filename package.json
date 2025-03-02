@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.22.0",
     "@radix-ui/react-select": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
