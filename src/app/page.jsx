@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress"
 import { Slider } from "@/components/ui/slider"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Home() {
     const [file, setFile] = useState(null)
@@ -138,15 +139,18 @@ export default function Home() {
                 body: formData,
             })
 
-            if (!response.ok) {
-                throw new Error("Failed to process file")
+            if (response.ok) {
+                const blob = await response.blob()
+                const url = URL.createObjectURL(blob)
+                setDownloadUrl(url)
+            } else {
+                toast.error("Failed to process file. Please try again!")
+                // throw new Error("Failed to process file")
             }
 
-            const blob = await response.blob()
-            const url = URL.createObjectURL(blob)
-            setDownloadUrl(url)
         } catch (error) {
             console.error("Error converting file:", error)
+            toast.error("Error converting file. Please try again!")
         } finally {
             setLoading(false)
         }
@@ -307,6 +311,7 @@ export default function Home() {
                 </div>
             </motion.div>
             <Footer />
+            <Toaster />
         </div>
     )
 }
