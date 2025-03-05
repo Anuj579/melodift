@@ -143,11 +143,11 @@ export default function Home() {
                 const blob = await response.blob()
                 const url = URL.createObjectURL(blob)
                 setDownloadUrl(url)
-                toast.success("Song converted successfully! 🎵")
+                toast.success("Song converted successfully!")
             } else {
                 toast.error("Failed to process file. Please try again!")
                 setProgress(0)
-                // throw new Error("Failed to process file")
+
             }
 
         } catch (error) {
