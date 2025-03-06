@@ -24,13 +24,14 @@ export async function POST(req) {
     await new Promise((resolve, reject) => {
       ffmpeg(inputFilePath)
         .audioFilters([
-          "asetrate=44100*0.88", // Slow down
-          "aresample=44100", // Resample
-          "equalizer=f=150:t=h:width=200:g=4",  // Boost sub-bass for warmth (low-end feel)
-          "equalizer=f=1000:t=h:width=200:g=-1",  // Reduce slightly to balance mids
-          "stereowiden=2",  // Expands stereo field for a more immersive feel
-          "aecho=0.15:0.35:250:0.05",  // Softer reverb with less tail
-          "loudnorm=i=-20",  // Lowers perceived loudness a bit
+          "atempo=0.9",                         // Slightly slower for a relaxed vibe
+          "equalizer=f=100:t=h:width=200:g=6",  // Richer, warmer bass
+          "equalizer=f=1000:t=h:width=250:g=-1", // Subtle mid scoop for vocal clarity
+          "equalizer=f=5500:t=h:width=300:g=4", // Brighter, smoother highs
+          "stereowiden=2.5",                    // A touch more immersion
+          "aecho=0.2:0.4:200:0.06",            // Lush yet controlled reverb
+          "loudnorm=i=-16:tp=-1.5:lra=10",     // Punchier, refined loudness
+          "highpass=f=35",                      // Slightly fuller low-end
         ])
         .save(outputFilePath)
         .on("end", resolve)

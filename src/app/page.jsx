@@ -129,6 +129,7 @@ export default function Home() {
         setIsPlaying(false)
         setLoading(true)
         setProgress(0)
+        setDownloadUrl(null)
 
         const formData = new FormData()
         formData.append("file", file)
