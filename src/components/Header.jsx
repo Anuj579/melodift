@@ -14,7 +14,7 @@ function Header() {
                         stiffness: 200,
                     }}
                 >
-                    <h1 className="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                    <h1 className="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 cursor-default">
                         Melodift
                     </h1>
                 </motion.div>
