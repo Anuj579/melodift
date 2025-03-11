@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Upload, Music, Headphones, Download, Loader2, X } from "lucide-react"
+import { Upload, Music, Headphones, Download, Loader2, X, Pause, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Slider } from "@/components/ui/slider"
@@ -258,7 +258,7 @@ function MainContent() {
                         </div>
 
                         {file && (
-                            <div className="mb-6">
+                            <div>
                                 <div className="flex items-center gap-2 mb-2">
                                     <Music className="h-4 w-4 text-purple-400" />
                                     <span className="text-sm text-zinc-400 w-full truncate">{file.name}</span>
@@ -314,7 +314,7 @@ function MainContent() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="bg-zinc-700/30 rounded-lg p-4 border border-zinc-600/50"
+                                    className="bg-zinc-700/30 rounded-lg p-4 border border-zinc-600/50 mt-6"
                                 >
                                     <div className="mb-4">
                                         <h3 className="text-sm font-medium text-zinc-300 mb-2 flex items-center">
@@ -325,15 +325,11 @@ function MainContent() {
                                         <audio ref={audioRef} src={downloadUrl} className="hidden" />
 
                                         <div className="flex items-center gap-2 mb-2">
-                                            <Button size="sm" variant="outline" className="h-8 w-8 p-0 rounded-full bg-transparent hover:bg-transparent" onClick={handlePlayPause}>
+                                            <Button size="sm" variant="outline" className="h-9 w-9 p-0 rounded-full bg-transparent hover:bg-transparent" onClick={handlePlayPause}>
                                                 {isPlaying ? (
-                                                    <span className="h-3 w-3 bg-white rounded-sm" />
+                                                    <Pause className={`h-4 w-4 text-white fill-white`} />
                                                 ) : (
-                                                    <motion.span
-                                                        initial={{ scale: 0 }}
-                                                        animate={{ scale: 1 }}
-                                                        className="h-0 w-0 border-t-transparent border-t-[6px] border-b-transparent border-b-[6px] border-l-white border-l-[10px] ml-0.5"
-                                                    />
+                                                    <Play className={`h-4 w-4 text-white fill-white`} />
                                                 )}
                                             </Button>
 
@@ -375,7 +371,7 @@ function MainContent() {
             <TabsContent value="examples" className="space-y-4">
                 <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-zinc-700/50 overflow-hidden">
                     <h2 className="text-xl font-bold mb-4 text-center">Listen to Lofi Transformations</h2>
-                    <p className="text-zinc-400 text-center mb-6">Hear the difference Melodift makes to these tracks</p>
+                    <p className="text-zinc-400 text-center mb-6">Hear the difference Melodift makes to these tracks <span className="text-zinc-500 text-sm">(use headphones for better experience🎧)</span></p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
                         <div className="flex items-center gap-2">

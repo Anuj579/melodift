@@ -118,7 +118,7 @@ export function SimpleTrackPlayer({ originalSrc, lofiSrc, title, artist, isPlayi
 
                     <Button
                         size="sm"
-                        variant={lofiModeGlobal ? "outline" : "outline"}
+                        variant="outline"
                         className={`h-9 w-9 p-0 rounded-full ${lofiModeGlobal ? "bg-purple-500/20 hover:bg-purple-500/30 border-purple-300/30" : "bg-transparent hover:bg-transparent"}`}
                         onClick={() => onPlayPause(!isPlaying)}
                     >

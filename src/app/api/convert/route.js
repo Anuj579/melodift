@@ -24,14 +24,15 @@ export async function POST(req) {
     await new Promise((resolve, reject) => {
       ffmpeg(inputFilePath)
         .audioFilters([
-          "atempo=0.9",                         // Slightly slower for a relaxed vibe
-          "equalizer=f=100:t=h:width=200:g=6",  // Richer, warmer bass
-          "equalizer=f=1000:t=h:width=250:g=-1", // Subtle mid scoop for vocal clarity
-          "equalizer=f=5500:t=h:width=300:g=4", // Brighter, smoother highs
-          "stereowiden=2.5",                    // A touch more immersion
-          "aecho=0.2:0.4:200:0.06",            // Lush yet controlled reverb
-          "loudnorm=i=-16:tp=-1.5:lra=10",     // Punchier, refined loudness
-          "highpass=f=35",                      // Slightly fuller low-end
+          "atempo=0.9",                                 // Slows the tempo slightly for a relaxed, chill vibe
+          "equalizer=f=100:t=h:width=200:g=4",          // Boosts bass for a warm, cozy foundation
+          "equalizer=f=1200:t=h:width=250:g=-1",        // Scoops mids gently for that lo-fi depth
+          "equalizer=f=5500:t=h:width=300:g=2",         // Adds subtle high-end clarity without sharpness
+          "stereowiden=2",                              // Widens the soundstage for an immersive experience
+          "aecho=0.12:0.3:130:0.04",                    // Applies light reverb to mimic café acoustics
+          "highpass=f=35",                              // Removes low-end rumble for a clean mix
+          "acompressor=threshold=-20dB:ratio=2:attack=20:release=200:knee=6", // Smooths dynamics for polish
+          "loudnorm=i=-16:tp=-2:lra=12"                 // Balances loudness for a natural, dynamic flow
         ])
         .save(outputFilePath)
         .on("end", resolve)
