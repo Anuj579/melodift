@@ -9,7 +9,7 @@ import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Switch } from "@/components/ui/switch"
 import toast, { Toaster } from 'react-hot-toast';
-import { SimpleTrackPlayer } from "./AudioPlayer"
+import { AudioPlayer } from "./AudioPlayer"
 import { Label } from "./ui/label"
 
 function MainContent() {
@@ -30,24 +30,24 @@ function MainContent() {
     const exampleTracks = [
         {
             id: 1,
-            title: "Chill Summer Vibes",
+            title: "Die With A Smile",
             artist: "Melodift",
-            original: "/audio/original-1.mp3",
-            lofi: "/audio/lofi-1.mp3",
+            original: "/audio/die-with-a-smile-original.mp3",
+            lofi: "/audio/die-with-a-smile-lofi.mp3",
         },
         {
             id: 2,
-            title: "Rainy Day Jazz",
+            title: "Attention",
             artist: "Melodift",
-            original: "/audio/original-2.mp3",
-            lofi: "/audio/lofi-2.mp3",
+            original: "/audio/attention-original.mp3",
+            lofi: "/audio/attention-lofi.mp3",
         },
         {
             id: 3,
-            title: "Acoustic Dreams",
+            title: "Brown Rang",
             artist: "Melodift",
-            original: "/audio/original-3.mp3",
-            lofi: "/audio/lofi-3.mp3",
+            original: "/audio/brown-rang-original.mp3",
+            lofi: "/audio/brown-rang-lofi.mp3",
         },
         {
             id: 4,
@@ -134,8 +134,9 @@ function MainContent() {
             // If there's an active track that's different, stop it first
             if (activeExampleId !== null && activeExampleId !== id) {
                 setActiveExampleId(null)
+            } else {
+                setActiveExampleId(id)
             }
-            setActiveExampleId(id)
         } else {
             if (activeExampleId === id) {
                 setActiveExampleId(null)
@@ -394,7 +395,7 @@ function MainContent() {
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ duration: 0.5, ease: "easeOut", delay: track.id * 0.08 }}
                             >
-                                <SimpleTrackPlayer
+                                <AudioPlayer
                                     key={track.id}
                                     originalSrc={track.original}
                                     lofiSrc={track.lofi}

@@ -5,7 +5,7 @@ import { Play, Pause } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 
-export function SimpleTrackPlayer({ originalSrc, lofiSrc, title, artist, isPlaying, onPlayPause, lofiModeGlobal }) {
+export function AudioPlayer({ originalSrc, lofiSrc, title, artist, isPlaying, onPlayPause, lofiModeGlobal }) {
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
     const [isLoaded, setIsLoaded] = useState(false)
