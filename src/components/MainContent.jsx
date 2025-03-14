@@ -49,13 +49,6 @@ function MainContent() {
             original: "/audio/brown-rang-original.mp3",
             lofi: "/audio/brown-rang-lofi.mp3",
         },
-        {
-            id: 4,
-            title: "Piano Melodies",
-            artist: "Melodift",
-            original: "/audio/original-4.mp3",
-            lofi: "/audio/lofi-4.mp3",
-        },
     ]
 
     // Simulate progress during conversion
