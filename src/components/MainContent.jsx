@@ -49,6 +49,13 @@ function MainContent() {
             original: "/audio/brown-rang-original.mp3",
             lofi: "/audio/brown-rang-lofi.mp3",
         },
+        {
+            id: 4,
+            title: "Jo Tum Mere Ho",
+            artist: "Melodift",
+            original: "/audio/jo-tum-mere-ho-original.mp3",
+            lofi: "/audio/jo-tum-mere-ho-lofi.mp3",
+        },
     ]
 
     // Simulate progress during conversion
