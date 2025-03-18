@@ -8,41 +8,9 @@ import { Slider } from "@/components/ui/slider"
 export function AudioPlayer({ originalSrc, lofiSrc, title, artist, isPlaying, onPlayPause, lofiModeGlobal }) {
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const [isLoaded, setIsLoaded] = useState(false)
 
     const audioRef = useRef(null)
     const animationRef = useRef(null)
-
-    // Update audio source when lofi mode changes
-    useEffect(() => {
-        const audio = audioRef.current
-        if (!audio) return
-
-        // If we're playing, we need to remember the current position
-        const wasPlaying = !audio.paused
-        const currentPosition = audio.currentTime
-
-        // Change the source
-        audio.src = lofiModeGlobal ? lofiSrc : originalSrc
-
-        // Set loaded to false until new source loads
-        setIsLoaded(false)
-
-        // When loaded, restore playback if needed
-        const handleCanPlay = () => {
-            setIsLoaded(true)
-            audio.currentTime = currentPosition
-            if (wasPlaying) {
-                audio.play()
-            }
-        }
-
-        audio.addEventListener("canplay", handleCanPlay)
-
-        return () => {
-            audio.removeEventListener("canplay", handleCanPlay)
-        }
-    }, [lofiModeGlobal, lofiSrc, originalSrc])
 
     useEffect(() => {
         const audio = audioRef.current
@@ -51,7 +19,6 @@ export function AudioPlayer({ originalSrc, lofiSrc, title, artist, isPlaying, on
         const updateDuration = () => {
             if (!isNaN(audio.duration)) {
                 setDuration(audio.duration)
-                setIsLoaded(true)
             }
         }
 
