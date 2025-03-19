@@ -1,5 +1,6 @@
-import ffmpeg from 'fluent-ffmpeg';
+import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
+import ffmpeg from "fluent-ffmpeg";
 
-ffmpeg.setFfmpegPath('C:\\ffmpeg\\bin\\ffmpeg.exe'); // FFmpeg path
+ffmpeg.setFfmpegPath(ffmpegInstaller.path); // Automatically detects ffmpeg
 
 export { ffmpeg };

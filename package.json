@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "NODE_OPTIONS='--max-old-space-size=512' next build",
-  "start": "next start",
-  "lint": "next lint"
-},
+    "dev": "next dev",
+    "build": "NODE_OPTIONS='--max-old-space-size=512' next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-progress": "^1.1.2",
     "@radix-ui/react-select": "^2.1.6",
