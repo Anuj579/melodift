@@ -1,9 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     eslint: {
-        ignoreDuringBuilds: true, // Prevents ESLint from running in production
+        ignoreDuringBuilds: true,
     },
-    output: "standalone", // Optimizes Next.js for deployment
+    output: "standalone",
+    webpack: (config, { isServer }) => {
+        if (isServer) {
+            config.externals.push({
+                'ffmpeg-static': 'commonjs ffmpeg-static',
+            });
+        }
+
+        return config;
+    },
 };
 
 export default nextConfig;
