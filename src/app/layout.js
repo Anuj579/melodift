@@ -12,8 +12,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Melodift - Your Late Night Companion",
-  description: "Transform your music into chill lofi vibes with Melodift.",
+  title: "Melodift - Convert Songs to Lofi | Online Lofi Music Converter",
+  description:
+    "Melodift is your ultimate online tool to convert any song into chill lofi vibes. Instantly transform audio into a relaxing lofi version. Perfect for study, sleep, or chill sessions. Try it free now!",
+  keywords: [
+    "Melodift",
+    "convert song to lofi",
+    "lofi song converter",
+    "online lofi converter",
+    "transform song to lofi",
+    "turn music into lofi",
+    "chill music generator",
+    "lofi remix online",
+    "music to lofi",
+    "lofi version converter",
+  ],
 };
 
 
