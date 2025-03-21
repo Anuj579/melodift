@@ -372,7 +372,7 @@ function MainContent() {
             <TabsContent value="examples" className="space-y-4">
                 <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-zinc-700/50 overflow-hidden">
                     <h2 className="text-xl font-bold mb-4 text-center">Listen to Lofi Transformations</h2>
-                    <p className="text-zinc-400 text-center mb-6">Hear the difference Melodift makes to these tracks <span className="text-zinc-500 text-sm">(use headphones for better experience🎧)</span></p>
+                    <p className="text-zinc-400 text-center mb-6">Hear the difference Melodift makes to these tracks <span className="text-zinc-500 text-sm">(use headphones for better experience)</span></p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
                         <div className="flex items-center gap-2">

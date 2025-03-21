@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎵 Melodift - Convert Songs to Lofi Vibes
 
-## Getting Started
+Melodift is a powerful and simple online tool that lets you **convert your songs into chill lofi versions** with a single click. Perfect for relaxing, studying, or vibing at night. 🌙🎧
 
-First, run the development server:
+> "Your Late Night Companion"
+
+---
+
+## 🌐 Live Demo
+
+Check it out live 👉 [https://melodift.up.railway.app](https://melodift.up.railway.app)
+
+---
+
+## 🔥 Features
+
+- 🎶 Convert any song to lofi style with ease
+- 💻 Built using **Next.js** (App Router)
+- 🎨 Clean UI with subtle gradients
+- 📦 FFmpeg-powered audio processing
+- ☁️ Hosted on **Railway**
+
+---
+
+## ⚙️ Tech Stack
+
+- **Frontend & Backend**: [Next.js](https://nextjs.org/)
+- **Audio Processing**: [FFmpeg](https://ffmpeg.org/)
+- **Deployment**: [Railway](https://railway.app/)
+- **Styling**: Tailwind CSS + ShadCN
+
+---
+
+## 🚀 How to Run Locally
 
 ```bash
+git clone https://github.com/Anuj579/melodift.git
+cd melodift
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🛠️ Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Upload a song (mp3/wav)
+- Get the converted lofi version
+- Download and enjoy 🎧
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📱 Connect With Me
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🌐 [Portfolio](https://anujchaudhary.netlify.app)
+- 🐦 [Twitter](https://twitter.com/anujbuilds)
+- 📸 [Instagram](https://instagram.com/anujbuilds)
+- 🎥 [YouTube](https://youtube.com/@anujbuilds)
+- 💼 [LinkedIn](https://linkedin.com/in/anujchaudhary549)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ by <b>Anuj<b/>
