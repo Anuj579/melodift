@@ -230,7 +230,7 @@ function MainContent() {
                 <div className="flex items-center min-h-[calc(100vh-30rem)] md:min-h-[calc(100vh-26rem)]">
                     <div className="bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 shadow-xl border border-zinc-700/50 max-w-md mx-auto w-full">
                         <div
-                            className={`relative border-2 border-dashed rounded-lg p-8 mb-6 transition-all ${dragActive ? "border-purple-500 bg-purple-500/10" : "border-zinc-600 hover:border-zinc-500"
+                            className={`relative border-2 border-dashed rounded-lg p-8 transition-all ${dragActive ? "border-purple-500 bg-purple-500/10" : "border-zinc-600 hover:border-zinc-500"
                                 }`}
                             onDragEnter={handleDrag}
                             onDragLeave={handleDrag}
@@ -260,7 +260,7 @@ function MainContent() {
 
                         {file && (
                             <div>
-                                <div className="flex items-center gap-2 mb-2">
+                                <div className="flex items-center gap-2 mt-6 mb-2">
                                     <Music className="h-4 w-4 text-purple-400" />
                                     <span className="text-sm text-zinc-400 w-full truncate">{file.name}</span>
                                     <X className="h-6 w-6 text-red-500 cursor-pointer" onClick={() => {
