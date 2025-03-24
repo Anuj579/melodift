@@ -147,9 +147,14 @@ function MainContent() {
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0]
         if (selectedFile) {
-            setFile(selectedFile)
-            setDownloadUrl(null)
-            setProgress(0)
+            if (selectedFile.size > 15 * 1024 * 1024) {
+                toast.error("Please upload a file less than 15MB.");
+                return;
+            } else {
+                setFile(selectedFile)
+                setDownloadUrl(null)
+                setProgress(0)
+            }
         }
     }
 
